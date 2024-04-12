@@ -66,7 +66,7 @@ export default function Products(){
             
             const filtered = productsList.map((d)=>{
                 
-                if (d.Category == 4){
+                if (d.Category === 4){
                     
                     return d;
                 }
@@ -91,7 +91,7 @@ export default function Products(){
             
             const filtered = productsList.map((d)=>{
                 
-                if (d.Category == 3){
+                if (d.Category === 3){
                     
                     return d;
                 }
@@ -116,7 +116,7 @@ export default function Products(){
             
             const filtered = productsList.map((d)=>{
                 
-                if (d.Category == 2){
+                if (d.Category === 2){
                     
                     return d;
                 }
@@ -141,7 +141,7 @@ export default function Products(){
             
             const filtered = productsList.map((d)=>{
                 
-                if (d.Category == 1){
+                if (d.Category === 1){
                     
                     return d;
                 }
