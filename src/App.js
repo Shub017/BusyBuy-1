@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar/Navbar";
+import { NotFound } from "./components/NotFound/NotFound";
+import LogIn from "./components/LogIn/LogIn";
+import SingUP from "./components/SingUP/SingUP";
+import Products from "./components/Products/Products";
+import Cart from "./components/Cart/Cart";
+import Orders from "./components/Orders/Orders";
+import Logo from "./components/Logo/Logo";
+import CustomProviderContext from "./CustomContext/CustomContext";
+import { ToastContainer} from 'react-toastify';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
+
+  const router = createBrowserRouter([
+    {
+      path:'/',
+      errorElement:<NotFound />,
+      element:<Navbar />,
+      children:[
+        {
+          index:true,
+          element:<Logo />
+        },
+        {
+          path:'/Login',
+          element: <LogIn />
+        },
+        {
+          path:'/SingUp',
+          element:<SingUP />
+        },
+        
+      ]
+    },
+    {path:'/product',
+     element:<><Navbar /><Products/></>
+    },
+    {
+      path:'/Cart',
+      element:<><Navbar /><Cart/></>
+    },
+    {
+      path:'/Orders',
+      element:<><Navbar /><Orders /></>
+    }
+  ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CustomProviderContext>
+      <RouterProvider router={router} />
+      </CustomProviderContext>
+      <ToastContainer/>
     </div>
   );
 }
