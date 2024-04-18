@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { CustomContext } from "../../CustomContext/CustomContext";
+import LogInFirst from './Images/NotLoggedIn.jpg'
 import styles from './Cart.module.css'
 
 export default function Cart(){
-    const {cartItems, totalCartPrice, updateCartTotalPrice, setCartItems, email, savePurchaseDetails} = useContext(CustomContext);
+    const {cartItems, totalCartPrice, updateCartTotalPrice, setCartItems, email, savePurchaseDetails, isLoggedIn} = useContext(CustomContext);
     console.log("Cart Items for email", email);
     console.log("CartItems Obtained: ", cartItems);
     const totalPrice = cartItems.reduce((accumulator, currentItem) => accumulator + (+currentItem.Price * currentItem.Quantity), 0);
@@ -54,11 +55,11 @@ export default function Cart(){
     
     return(
         <>
-        <aside className={styles.filterSidebar}>
+        {isLoggedIn?<aside className={styles.filterSidebar}>
             <p>Total: {totalCartPrice.toLocaleString('en-IN')}</p>
             <button className={styles.CartPurchaseButton} onClick={()=>{addPurchasedItem(email, cartItems)}}>Purchase</button>
-        </aside>
-        <div className={styles.gridDisplay}>
+        </aside>:''}
+        {isLoggedIn?<div className={styles.gridDisplay}>
         
             {cartItems.map((d, index)=>{
                 return(
@@ -82,7 +83,7 @@ export default function Cart(){
                 )
             })}
         
-        </div>
+        </div>:<img src={LogInFirst} alt='LogIn First' className={styles.notLoggedIn}/>}
         </>
     )
 }

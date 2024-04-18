@@ -24,3 +24,8 @@
 .loadingSpinner{
     margin-left: 40%;
 }
+
+.notLoggedIn{
+    margin: auto;
+    padding-left: 20vw;
+}
